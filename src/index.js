@@ -1,10 +1,12 @@
+import { getByDisplayValue } from '@testing-library/dom';
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
 function App(props) {
     const [user, setUser] = useState({
         first: '',
-        last: ''
+        last: '',
+        img: ''
     });
 
     const handleClick = () => {
@@ -13,7 +15,7 @@ function App(props) {
             .then(data => {
                 console.log(data.results[0]);
                 const myUser = data.results[0];
-                setUser({first:myUser.name.first, last:myUser.name.last});
+                setUser({first:myUser.name.first, last:myUser.name.last, img:myUser.picture.thumbnail});
             })
             .catch(error => console.error(error));
     };
@@ -21,7 +23,8 @@ function App(props) {
     return (
         <>
             <p>Hello</p>
-            <button onClick={handleClick}>Get User</button>
+            <button onClick={handleClick} style={{display:'block'}}>Get User</button>
+            <img src={user.img}></img>
             <p>{`${user.first} ${user.last}`}</p>
         </>
     );
