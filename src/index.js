@@ -1,7 +1,6 @@
 import { getByDisplayValue } from '@testing-library/dom';
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 
 function App(props) {
     const [userList, setUserList] = useState([
@@ -36,7 +35,9 @@ function App(props) {
             <button onClick={handleClick} style={{display:'block'}}>Get User</button>
             {userList.map((element, idx) => {
                 return (
-                    <div className='black-border' key={`${element.first}${element.last}`}>
+                    <div 
+                    key={`${element.first}${element.last}`}
+                    style={{border: 'solid 1px black'}}>
                         <img src={element.img}></img>
                         <p>{`${element.first} ${element.last}`}</p>
                     </div>
